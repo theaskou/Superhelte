@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-
         // Font colors
         final String ANSI_GREEN = "\u001B[32m";
         final String ANSI_RED = "\u001B[31m";
@@ -14,7 +13,7 @@ public class Main {
 
         Database superheroDatabase = new Database();
 
-        int menuChoice;
+        String menuChoice;
         do {
             System.out.println("\n" +
                     "Tast 1 for at oprette en superhelt\n" +
@@ -22,9 +21,9 @@ public class Main {
                     "Tast 9 for at afslutte");
 
             Scanner keyboard = new Scanner(System.in);
-            menuChoice = keyboard.nextInt();
+            menuChoice = keyboard.next();
 
-            if (menuChoice == 1) {
+            if (menuChoice.equals("1")) {
                 System.out.print("\nIndtast superheltens helte-navn: ");
                 String name = keyboard.next();
 
@@ -70,12 +69,15 @@ public class Main {
                 superheroDatabase.createSuperhero(name, realName, superPowers, yearCreated, isHuman, strength);
                 superheroDatabase.seeAllSuperHeroes();
 
-            } else if (menuChoice == 2) {
+            } else if (menuChoice.equals("2")) {
                 System.out.println(ANSI_PURPLE + "Liste over superhelte i databasen: " + RESET);
                 superheroDatabase.seeAllSuperHeroes();
             }
 
-        } while (menuChoice != 9);
+            if (!menuChoice.equals("9") && !menuChoice.equals("1") && !menuChoice.equals("2")) {
+                System.out.println(ANSI_RED + "Indtast et tal fra menuen: " + RESET);
+            }
+        } while (!menuChoice.equals("9"));
 
     }
 
