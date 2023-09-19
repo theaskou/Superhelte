@@ -39,6 +39,30 @@ public class Superhero {
         return yearCreated;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public void setSuperPowers(String superPowers) {
+        this.superPowers = superPowers;
+    }
+
+    public void setYearCreated(int yearCreated) {
+        this.yearCreated = yearCreated;
+    }
+
+    public void setIsHuman(String isHuman) {
+        this.isHuman = isHuman;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
     // font colors
     final String BLACK_BOLD = "\033[1;30m";
     final String RESET = "\033[0m";

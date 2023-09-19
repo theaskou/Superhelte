@@ -4,13 +4,23 @@ public class UserInterface {
 
     public UserInterface () {
 
+        /*opgave: "I UserInterface klassen skal du splitte koden, der opretter, udskriver superhelte og søger efter superhelte, ud i hver sin metode.
+        Tilret hele programmet, så det stadig virker fuldstændig som i forrige delopgave.
+        Du har nu redesignet/refaktoreret din kode uden at brugeren vil opleve nogen forskel, når programmet kører.
+        Det vil sige at du har brugt tid på at øge den interne kodekvalitet, hvilket vil komme dig til gode i form af bedre overblik, når programmet vokser sig større (= en langsigtet investering).
+        */
+
+
+    }
+
+    public void startProgram() {
         // Font colors
         final String ANSI_GREEN = "\u001B[32m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_PURPLE = "\u001B[35m";
         final String RESET = "\033[0m";
 
-        System.out.println(ANSI_PURPLE +"Velkommen til Superhelte databasen"+RESET);
+        System.out.println(ANSI_PURPLE +"Velkommen til Superhelte databasen"+ RESET);
 
         Database superheroDatabase = new Database();
 
@@ -25,8 +35,10 @@ public class UserInterface {
                     "Tast 4 for at redigere i databasen\n" +
                     "Tast 9 for at afslutte");
 
+            // Skriv menuen om til switch i stedet for if
+
             Scanner keyboard = new Scanner(System.in);
-            menuChoice = keyboard.next();
+            menuChoice = keyboard.nextLine();
 
             // Menupunkt 1, opret superhelt:
 
@@ -61,7 +73,7 @@ public class UserInterface {
                 do {
                     System.out.print("Indtast superheltens styrke på en skala fra 1-10: ");
 
-                    // Omkriv til en funktion i Database, som kan kaldes her i stedet
+                    // Input tjek
                     while (!keyboard.hasNextInt()) {
                         System.out.println(ANSI_RED + "Forkert indtastning. Styrken skal angives som et tal mellem 1 og 10. " + RESET);
                         keyboard.next();
@@ -89,25 +101,26 @@ public class UserInterface {
             } else if (menuChoice.equals("3")) {
                 System.out.println("Indtast søgeord og tryk enter: ");
 
-                System.out.println("Søgeresultat: " + superheroDatabase.søgeFunktion((keyboard.next())));
+                System.out.println(ANSI_PURPLE + "Søgeresultat: " + RESET + superheroDatabase.søgeFunktion((keyboard.next())));
 
                 // Menupunkt 4, rediger i databasen:
 
             } else if (menuChoice.equals("4")) {
-
-
+                System.out.println("Søg efter superhelt: ");
+                String superHeroToEdit = keyboard.nextLine();
+                superheroDatabase.editSuperhero(superHeroToEdit, keyboard);
             }
 
             // Ugyldig indtastning, gentag menuen:
 
-            if (!menuChoice.equals("9") && !menuChoice.equals("1") && !menuChoice.equals("2") && !menuChoice.equals("3")) {
+            if (!menuChoice.equals("9") && !menuChoice.equals("1") && !menuChoice.equals("2") && !menuChoice.equals("3") && !menuChoice.equals("4")) {
                 System.out.println(ANSI_RED + "Indtast et tal fra menuen: " + RESET);
             }
 
             // Afslut program
 
         } while(!menuChoice.equals("9"));
-
     }
+
 }
 
