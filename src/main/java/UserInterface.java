@@ -19,20 +19,20 @@ public class UserInterface {
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_PURPLE = "\u001B[35m";
         final String RESET = "\033[0m";
+        final String BLACK_BOLD = "\033[1;30m";
 
         System.out.println(ANSI_PURPLE +"Velkommen til Superhelte databasen"+ RESET);
 
         Database superheroDatabase = new Database();
 
         String menuChoice;
-        do
-
-        {
+        do {
             System.out.println("\n" +
                     "Tast 1 for at oprette en superhelt\n" +
                     "Tast 2 for at se databasen over superhelte\n" +
                     "Tast 3 for at søge i databasen\n" +
                     "Tast 4 for at redigere i databasen\n" +
+                    "Tast 5 for at slette en superhelt\n" +
                     "Tast 9 for at afslutte");
 
             // Skriv menuen om til switch i stedet for if
@@ -109,11 +109,51 @@ public class UserInterface {
                 System.out.println("Søg efter superhelt: ");
                 String superHeroToEdit = keyboard.nextLine();
                 superheroDatabase.editSuperhero(superHeroToEdit, keyboard);
+
+                // Menupunkt 5: slet en superhelt fra listen
+                // Todo: Håndter input der er udenfor arraylistens størrelse
+
+            } else if (menuChoice.equals("5")) {
+                int indexToDelete;
+                Superhero superheroToDelete;
+
+                do {
+                    System.out.println("Hvilken superhelt skal slettes? Vælg et nummer på listen: ");
+
+                    int i = 1;
+
+                    for (Superhero sh : superheroDatabase.superheroes) {
+                        System.out.println(i++ + ". " +
+
+                                BLACK_BOLD + "Navn: " + RESET + sh.getName() +
+                                BLACK_BOLD + " Rigtigt navn: " + RESET + sh.getRealName() +
+                                BLACK_BOLD + " Superkræfter: " + RESET + sh.getSuperPowers() +
+                                BLACK_BOLD + " Oprindelsesår: " + RESET + sh.getYearCreated() +
+                                BLACK_BOLD + " Race: " + RESET + sh.getIsHuman() +
+                                BLACK_BOLD + " Styrke: " + RESET + sh.getStrength());
+                    }
+
+                    while (!keyboard.hasNextInt()) {
+                        System.out.println(ANSI_RED + "Vælg et tal på listen: " + RESET);
+                        keyboard.next();
+                    }
+
+                    indexToDelete = keyboard.nextInt() - 1;
+                    superheroToDelete = superheroDatabase.superheroes.get(indexToDelete);
+                    superheroDatabase.deleteSuperhero(indexToDelete);
+
+                } while (indexToDelete >= 0 && indexToDelete < superheroDatabase.superheroes.size());
+
+                System.out.println(ANSI_GREEN + superheroToDelete.getName() + " er slettet fra databasen." + RESET);
+
             }
+
+
+
 
             // Ugyldig indtastning, gentag menuen:
 
-            if (!menuChoice.equals("9") && !menuChoice.equals("1") && !menuChoice.equals("2") && !menuChoice.equals("3") && !menuChoice.equals("4")) {
+            if (!menuChoice.equals("9") && !menuChoice.equals("1") && !menuChoice.equals("2") && !menuChoice.equals("3") && !menuChoice.equals("4") && !menuChoice.equals("5")) {
                 System.out.println(ANSI_RED + "Indtast et tal fra menuen: " + RESET);
             }
 

@@ -57,7 +57,7 @@ public class Database {
     }
 
     // Metode til at redigere i listerne:
-
+// TODO Læg brugerinteraktion over i UserInterface
     public void editSuperhero(String superhero, Scanner keyboard) {
         ArrayList<Superhero> resultsToEdit = søgeFunktion(superhero);
         Superhero superheroToEdit = null;
@@ -129,7 +129,9 @@ public class Database {
 
     public void deleteSuperhero(int index) {
 
-
+        if (index >= 0 && index < superheroes.size()) {
+            superheroes.remove(index);
+        }
     }
 
 }
