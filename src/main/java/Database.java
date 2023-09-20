@@ -12,10 +12,11 @@ public class Database {
         Superhero batwoman = new Superhero("Batwoman", "Kathy Kane", "Martial arts and stealth", 1956, "Human", 9);
         Superhero batman = new Superhero("Batman", "Bruce Wayne", "Wealth, strength, strategist", 1939, "Human", 8);
         Superhero spiderman = new Superhero("Spiderman", "Peter Parker", "Spider-mutant powers", 1962, "Human mutant", 6);
-        Superhero wonderwoman = new Superhero("Wonderwoman", "Diana Prince", "Superhuman strength, flying", 1941, "Demi-godess", 10);
-
+        Superhero wonderwoman = new Superhero("Wonderwoman", "Diana Prince", "Superhuman strength, flying", 1941, "Demi-goddess", 10);
         // Tilføj superheltene til listen:
         superheroes.addAll(Arrays.asList(superman, batwoman, batman, spiderman, wonderwoman));
+
+
     }
 
     // Metode til at tilføje superhelte fra brugerindtastning:
@@ -125,6 +126,12 @@ public class Database {
             System.out.println(ANSI_GREEN + "Superhelten er nu opdateret:\n" + RESET + superheroToEdit);
         }
     }
+
+    public void deleteSuperhero(int index) {
+
+
+    }
+
 }
 
 
