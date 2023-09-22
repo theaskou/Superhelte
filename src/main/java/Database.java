@@ -33,9 +33,9 @@ public class Database {
     }
 
     // Metode til at søge efter en superhelt i databasen:
-    // Virker ikke på tal
-    // Skal håndtere søgninger der ikke giver resultater -
-    // Udskrivning skal gøres bedre, der kommer [ og , med.
+    // TODO Virker ikke på tal
+    // TODO Skal håndtere søgninger der ikke giver resultater -
+    // TODO Udskrivning skal gøres bedre, der kommer [ og , med.
     // Der må findes en simplere måde at kalde alle attributter i funktionen.
 
     // font colors
@@ -127,6 +127,7 @@ public class Database {
         }
     }
 
+    // Metode til at slette en superhelt
     public void deleteSuperhero(int index) {
 
         if (index >= 0 && index < superheroes.size()) {
